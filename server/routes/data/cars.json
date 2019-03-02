@@ -40,35 +40,5 @@
         "name": "Green Roaster",
         "brand": "HMI",
         "year_release": "1976"
-    },
-    {
-        "car_id": 3,
-        "name": "Green Roaster",
-        "brand": "HMI",
-        "year_release": "1976"
-    },
-    {
-        "car_id": 3,
-        "name": "Test Calel",
-        "brand": "HMI",
-        "year_release": "1975"
-    },
-    {
-        "car_id": 3,
-        "name": "Tesla Testing",
-        "brand": "Tesla",
-        "year_release": "2019"
-    },
-    {
-        "car_id": 3,
-        "name": "Colola Super",
-        "brand": "GIATEST",
-        "year_release": "2015"
-    },
-    {
-        "car_id": 3,
-        "name": "CololaLALALALA",
-        "brand": "GIA",
-        "year_release": "2015"
     }
 ]
