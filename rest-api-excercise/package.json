@@ -17,7 +17,8 @@
   "author": "Jaime Salas",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0"
   },
   "devDependencies": {
     "parcel": "^1.11.0"
