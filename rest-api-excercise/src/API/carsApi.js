@@ -7,10 +7,8 @@ const baseUrl = 'http://localhost:3050';
 export const getAllCars = async () => {
   try {
     const response = await axios.get(`${baseUrl}/api/cars`);
-    return new Promise((resolve, _) => {
-      const cars = response.data;
-      resolve(cars);
-    });
+    const cars = await response.data;
+    return cars;
   } catch (error) {
     console.log(error);
   }
@@ -30,10 +28,8 @@ export const getAllCarsFetch = () => {
 export const getCarById = async id => {
   try {
     const response = await axios.get(`${baseUrl}/api/cars/${id}`);
-    return new Promise((resolve, _) => {
-      const car = response.data;
-      resolve(car);
-    });
+    const car = await response.data;
+    return car;
   } catch (error) {
     console.log(error);
   }
@@ -53,9 +49,8 @@ export const getCarByIdFetch = id => {
 export const addCar = async car => {
   try {
     const response = await axios.post(`${baseUrl}/api/cars/`, car);
-    return new Promise((resolve, _) => {
-      resolve(response.statusText);
-    });
+    const result = await response.statusText;
+    return result;
   } catch (error) {
     console.log(error);
   }
@@ -70,8 +65,7 @@ export const addCarFetch = car => {
       'Content-Type': 'application/json',
     },
   }).catch(e => console.log(e));
-
   return new Promise((resolve, _) => {
-    resolve('OK');
+    resolve(response.statusText);
   });
 };
