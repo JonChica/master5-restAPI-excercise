@@ -14,16 +14,6 @@ export const getAllCars = async () => {
   }
 };
 
-// getAllCars () fetch & Promises
-export const getAllCarsFetch = () => {
-  const cars = fetch(`${baseUrl}/api/cars`)
-    .then(response => response.json())
-    .catch(e => console.log(e));
-  return new Promise((resolve, _) => {
-    resolve(cars);
-  });
-};
-
 // getCarById () axios & async-await
 export const getCarById = async id => {
   try {
@@ -33,16 +23,6 @@ export const getCarById = async id => {
   } catch (error) {
     console.log(error);
   }
-};
-
-// getCarById () fetch & Promises
-export const getCarByIdFetch = id => {
-  const car = fetch(`${baseUrl}/api/cars/${id}`)
-    .then(response => response.json())
-    .catch(e => console.log(e));
-  return new Promise((resolve, _) => {
-    resolve(car);
-  });
 };
 
 // addCar () axios & async-await
@@ -56,16 +36,78 @@ export const addCar = async car => {
   }
 };
 
+// getAllCars () fetch & Promises
+export const getAllCarsFetch = () => {
+  const cars = fetch(`${baseUrl}/api/cars`)
+    .then(response => response.json())
+    .catch(e => console.log(e));
+  return new Promise((resolve, _) => {
+    resolve(cars);
+  });
+};
+
+// getCarById () fetch & Promises
+export const getCarByIdFetch = id => {
+  const car = fetch(`${baseUrl}/api/cars/${id}`)
+    .then(response => response.json())
+    .catch(e => console.log(e));
+  return new Promise((resolve, _) => {
+    resolve(car);
+  });
+};
+
 // addCar () fetch & Promises
 export const addCarFetch = car => {
-  const response = fetch(`${baseUrl}/api/cars/`, {
-    method: 'POST',
-    body: JSON.stringify(car),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).catch(e => console.log(e));
   return new Promise((resolve, _) => {
-    resolve(response.statusText);
+    fetch(`${baseUrl}/api/cars/`, {
+      method: 'POST',
+      body: JSON.stringify(car),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => (response.statusText === 'Created' ? resolve() : null))
+      .catch(e => console.log(e));
+  });
+};
+
+// getAllCars () XMLHttpRequest
+export const getAllCarsXHR = () => {
+  return new Promise((resolve, _) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('get', `${baseUrl}/api/cars`);
+    xhr.responseType = 'json';
+    xhr.onload = () => {
+      const status = xhr.status;
+      status === 200 ? resolve(xhr.response) : null;
+    };
+    xhr.send();
+  });
+};
+
+// getCarById () XMLHttpRequest
+export const getCarByIdXHR = id => {
+  return new Promise((resolve, _) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('get', `${baseUrl}/api/cars/${id}`);
+    xhr.responseType = 'json';
+    xhr.onload = () => {
+      const status = xhr.status;
+      status === 200 ? resolve(xhr.response) : null;
+    };
+    xhr.send();
+  });
+};
+
+// addCar () XMLHttpRequest
+export const addCarXHR = car => {
+  return new Promise((resolve, _) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('post', `${baseUrl}/api/cars`);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.onload = () => {
+      xhr.statusText === 'Created' ? resolve() : console.log(xhr.statusText);
+    };
+    xhr.send(JSON.stringify(car));
   });
 };
